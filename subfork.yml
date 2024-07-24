@@ -1,0 +1,45 @@
+# enter verified site domain name here
+domain: default.fork.io
+
+# enter site credentials here
+access_key: ${SUBFORK_ACCESS_KEY}
+secret_key: ${SUBFORK_SECRET_KEY}
+
+# template and static file folder paths
+template_folder: templates
+static_folder: static
+
+# deployment settings
+auto_minimize: true
+
+templates:
+  base:
+    file: base.default.html
+  index:
+    route: /
+    file: index.html
+  notfound:
+    file: 404.html
+  error:
+    file: 500.html
+  forgot:
+    route: /forgot
+    file: forgot.html
+    attrs:
+      title: "Reset Password"
+  login:
+    route: /login
+    file: login.html
+    attrs:
+      title: "Login"
+  logout:
+    route: /logout
+    file: logout.html
+    loginrequired: true
+    attrs:
+      title: "Logout"
+  signup:
+    route: /signup
+    file: signup.html
+    attrs:
+      title: "Sign Up"

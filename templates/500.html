@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>{{code}}</title>
+  </head>
+<style>
+body {
+    background: #fff;
+}
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+}
+.code {
+  color: #333;
+  font-family: Tahoma, sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+.message {
+  color: #545e65;
+  font-family: Tahoma, sans-serif;
+  font-size: 10px;
+  text-align: left;
+}
+</style>
+<body>
+  <div class="centered">
+    <h1 class="code">{{code}}: {{name}}</h1>
+    <h2 class="message">{{message}}</h2>
+  </div>
+</body>
+</html>

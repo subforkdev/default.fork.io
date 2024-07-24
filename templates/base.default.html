@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>{{title}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{description}}">
+    <meta name="twitter:card" value="summary"/>
+    <meta name="twitter:site" value="{{twitter}}"/>
+    <meta property="og:title" content="{{title}}"/>
+    <meta property="og:site_name" content="{{name}}"/>
+    <meta property="og:description"  content="{{description}}"/>
+    <meta property="og:url" content="{{website}}"/>
+    <link rel="stylesheet" type="text/css" href=//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.default.css" />
+{% block scripts %}{% endblock %}
+{% block style %}{% endblock %}
+  </head>
+  <body>
+{% block header %}{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+  </body>
+</html>

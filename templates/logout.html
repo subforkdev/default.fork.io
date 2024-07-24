@@ -1,0 +1,26 @@
+{% extends "base.default.html" %}
+{% block content %}
+{% if user and user.is_authenticated %}
+<div id="error"></div>
+<div id="message"></div>
+<script>
+var data = {'next': '/'};
+$.post('/api/user/logout', data, function(resp){
+  console.log(resp);
+  if (resp.success == true) {
+    $('#message').show();
+    $('#message').html(resp.message).css('opacity', '1.0');
+    window.setTimeout(function(){
+      window.location.replace(resp.next);
+    }, 1000);
+  } else if (resp.success == false) {
+    $('#error').show();
+    $('#error').html(resp.error).css('opacity', '1.0');
+    $('#error').delay(4000).fadeOut(1000);
+  }
+})
+</script>
+{% else %}
+<script>window.location.replace('/');</script>
+{% endif %}
+{% endblock %}

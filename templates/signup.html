@@ -1,0 +1,86 @@
+{% extends "base.default.html" %}
+{% block content %}
+{% if user and user.is_authenticated %}
+<script>window.location.replace('/');</script>
+{% else %}
+<!-- <link rel=stylesheet type=text/css href="/static/css/forms.css"/> -->
+<div id="error"></div>
+<div id="message"></div>
+<div class="ui-dialog center" style="height: 330px; width: 300px;">
+<div class="ui-dialog-titlebar"><span id="ui-id-1" class="ui-dialog-title">Sign up</span></div>
+<div class="dialog">
+<div class="form-container">
+<form id="signup-form" class="signup-form">
+    <input type="hidden" value="{{next or '/'}}" id="next" name="next">
+    <div class="content">
+      <input type="text" name="username" id="username" minlength="3" class="input" placeholder="Username" autofocus required />
+      <input type="text" name="email" id="email" minlength="6" class="input" placeholder="Email" autofocus required />
+      <input type="password" name="password" id="password" class="input" placeholder="Password" required />
+      <input type="submit" name="submit" value="Sign up" class="button" style="float:right;"/>
+      <a href="/login">Already have an account?</a>
+    </div>
+    <div class="footer"></div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<script>
+$("#signup-form").validate({
+    rules: {
+        username: {
+            required: true,
+            minlength: 3
+        },
+        email: {
+            required: true,
+            minlength: 6
+        },
+        password: {
+            required: true,
+            minlength: 5
+        },
+    },
+    messages: {
+        username: {
+            required: "Required",
+            minlength: "Invalid"
+        },
+        email: {
+            required: "Required",
+            minlength: "Invalid"
+        },
+        password: {
+            required: "Required",
+            minlength: "Invalid"
+        },
+    },
+    wrapper: 'span',
+});
+
+$("#signup-form").submit(function(e) {
+  e.preventDefault();
+  var data = {};
+  $.each($('#signup-form').serializeArray(), function(i, field) {
+    data[field.name] = field.value;
+  });
+  $.post('/api/user/signup', data, function(resp){
+    console.log(resp);
+    if (resp.success == true) {
+      $('#message').show();
+      $('#message').html(resp.message).css('opacity', '1.0');
+      window.setTimeout(function(){
+        window.location.replace(resp.next);
+      }, 1000);
+    } else if (resp.success == false) {
+      $('#error').show();
+      $('#error').html(resp.error).css('opacity', '1.0');
+      $('#error').delay(4000).fadeOut(1000);
+    }
+  })
+});
+
+</script>
+
+{% endif %}
+{% endblock %}
